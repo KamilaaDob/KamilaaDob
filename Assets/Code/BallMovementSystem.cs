@@ -8,9 +8,16 @@ public class BallMovementSystem : MonoBehaviour
     public Rigidbody ball_physics;
     public float move_speed;
     public GameObject direction_pointer;
+    public Vector2 keyboard_input;
 
 
+    public void ReadKeyaboard()
+    {
+    	keyboard_input.x = Input.GetAxis("Horizontal");
+		keyboard_input.y = Input.GetAxis("Vertical");
 
+
+    }
 
     public void MoveByWorldAxis(  Vector3 direction_and_speed  )
     {
@@ -33,6 +40,7 @@ public class BallMovementSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+    	ReadKeyaboard();
+        MoveByWorldAxis(new Vector3(keyboard_input.x,0,keyboard_input.y));
     }
 }
